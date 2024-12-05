@@ -1,0 +1,4 @@
+mybatis-config.xml 中配置数据库地址
+MapperRegister.registerMappers(JavaPlugin plugin) 将自动的把插件mapper文件夹内映射文件注册到mybatis
+MapperRegister.unRegisterMappers(JavaPlugin plugin) 将自动的把插件mapper文件夹内映射文件从mybatis中卸载
+使用BukkitMybatis.instance.getSqlSessionFactory() 获取会话工厂
