@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD MyBatis Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- 配置 MyBatis 的别名 -->
+
+    <!-- 配置数据库连接池 -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="com.cuzz.bukkitmybatis.datasource.HikariDataSourceFactory">
+                <property name="jdbcUrl" value="jdbc:mysql://8.138.106.163:3306/electric_dispatch"/>
+                <property name="username" value="root"/>
+                <property name="password" value="loveyou"/>
+                <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="maximumPoolSize" value="10"/>
+                <property name="minimumIdle" value="5"/>
+                <property name="connectionTimeout" value="30000"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 配置日志工厂类型 -->
+    <!-- 如果你已经配置了 SLF4J 和 Log4j2，MyBatis 会自动识别并使用 Log4j2 -->
+    <settings>
+        <setting name="logImpl" value="LOG4J2"/> <!-- 配置使用 Log4j2 -->
+    </settings>
+<!--    &lt;!&ndash; 配置 Mapper 文件的位置 &ndash;&gt;-->
+<!--    <mappers>-->
+<!--        <mapper resource="com/cuzz/bukkitmybatis/mapper/TestMapper.xml"/>-->
+<!--    </mappers>-->
+</configuration>

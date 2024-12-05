@@ -1,0 +1,5 @@
+name: BukkitMybatis
+version: '${project.version}'
+main: com.cuzz.bukkitmybatis.BukkitMybatis
+api-version: '1.20'
+load: STARTUP
