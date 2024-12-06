@@ -3,6 +3,8 @@ package com.cuzz.bukkitmybatis.utils;
 import com.cuzz.bukkitmybatis.BukkitMybatis;
 import com.cuzz.bukkitmybatis.mapper.TestMapper2;
 import com.cuzz.bukkitmybatis.model.Group;
+import org.apache.ibatis.binding.MapperProxyFactory;
+import org.apache.ibatis.binding.MapperRegistry;
 import org.apache.ibatis.builder.xml.XMLMapperBuilder;
 import org.apache.ibatis.cache.Cache;
 import org.apache.ibatis.logging.Log;
@@ -66,6 +68,25 @@ public class MapperRegister {
         Configuration configuration = BukkitMybatis.instance.getSqlSessionFactory().getConfiguration();
         String packageName = plugin.getClass().getPackageName();
         try {
+
+            //清除mapper代理实例
+            MapperRegistry mapperRegistry = configuration.getMapperRegistry();
+            Field knownMappersField = MapperRegistry.class.getDeclaredField("knownMappers");
+            knownMappersField.setAccessible(true); // 绕过访问限制
+            Map<Class<?>, MapperProxyFactory<?>> mapperProxyMaps = (Map<Class<?>, MapperProxyFactory<?>>) knownMappersField.get(mapperRegistry);
+
+            Set<Class<?>> classes = mapperProxyMaps.keySet();
+            Iterator<Class<?>> iterator = classes.iterator();
+            while (iterator.hasNext()) {
+                Class<?> clazz = iterator.next();
+                if (clazz.getPackageName().startsWith(packageName)) {
+                    iterator.remove();
+                    System.out.println("清除 mappedProxy " +clazz.getName());
+                }
+            }
+
+
+
             //清除MappedStatement
             Collection<MappedStatement> mappedStatements = configuration.getMappedStatements();
             Iterator<MappedStatement> mappedStatementIterator = mappedStatements.iterator();

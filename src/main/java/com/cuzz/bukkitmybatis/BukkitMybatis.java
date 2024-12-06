@@ -9,6 +9,7 @@ import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -71,7 +72,10 @@ public final class BukkitMybatis extends JavaPlugin {
         Group groupById2 = mapper2.getGroupByName("AAA");
         System.out.println("Second mapper result: " + groupById2.toString());
 
-
+        Collection<? extends Player> onlinePlayers = this.getServer().getOnlinePlayers();
+        List<String> list = onlinePlayers.stream().map(player -> {
+            return player.getName();
+        }).toList();
 
 
     }
