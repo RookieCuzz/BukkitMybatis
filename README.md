@@ -19,7 +19,7 @@
     </environments>
 </configuration>
  ```
-##自动注册映射文件
+## 自动注册映射文件
 
 使用 MapperRegister.registerMappers(JavaPlugin plugin) 方法，可以自动将插件 mapper 文件夹中的所有映射文件注册到 MyBatis：
 
