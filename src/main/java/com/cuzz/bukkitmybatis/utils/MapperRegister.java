@@ -64,7 +64,6 @@ public class MapperRegister {
     public synchronized static void unregisterMapper(JavaPlugin plugin) {
 
         Configuration configuration = BukkitMybatis.instance.getSqlSessionFactory().getConfiguration();
-        Map<String, List<MappedStatement>> cacheMappedStatement = BukkitMybatis.instance.cacheMappedStatement;
         String packageName = plugin.getClass().getPackageName();
         try {
             //清除MappedStatement
@@ -162,26 +161,7 @@ public class MapperRegister {
                 BukkitMybatis.instance.getLogger().log(Level.WARNING, "无法注册: " + file.getAbsolutePath(), e);
             }
         }
-        //收尾工作
-        Collection<MappedStatement> mappedStatements = BukkitMybatis.instance.getSqlSessionFactory().getConfiguration().getMappedStatements();
-        System.out.println("mapper数量"+mappedStatements.size());
-        Class<? extends Log> logImpl = BukkitMybatis.instance.getSqlSessionFactory().getConfiguration().getLogImpl();
-        System.out.println(logImpl);
-        //mybatis集成插件中是否有对应插件的缓存空间
-        //若没有则返回一个新的
-        List<MappedStatement> pluginCacheStatements = BukkitMybatis.instance.cacheMappedStatement.computeIfAbsent(plugin.getName()
-                , key -> new ArrayList<>()
-        );
-        String packageName = plugin.getClass().getPackageName();
-        for (MappedStatement mappedStatement:mappedStatements){
 
-            if (mappedStatement.getId().startsWith(packageName)){
-                System.out.println(mappedStatement.toString());
-                pluginCacheStatements.add(mappedStatement);
-                System.out.println("添加缓存记录");
-            }
-            System.out.println(mappedStatement.getId()+" : "+mappedStatement.getBoundSql("1").getSql()+mappedStatement.getResultSetType());
-        }
         BukkitMybatis.instance.getLogger().log(Level.INFO,
                 "\u001B[32m" + plugin.getName() + " >> 映射器注册完成: 成功 " + successfulCount + "，失败 " + failedCount + "\u001B[0m"
         );

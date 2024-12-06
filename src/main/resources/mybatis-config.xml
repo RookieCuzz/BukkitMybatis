@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD MyBatis Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
+    <!-- 配置日志工厂类型 -->
+    <!-- 如果你已经配置了 SLF4J 和 Log4j2，MyBatis 会自动识别并使用 Log4j2 -->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>  <!-- [LOG4J2,STDOUT_LOGGING] -->
+    </settings>
     <!-- 配置 MyBatis 的别名 -->
 
     <!-- 配置数据库连接池 -->
@@ -20,11 +24,7 @@
         </environment>
     </environments>
 
-    <!-- 配置日志工厂类型 -->
-    <!-- 如果你已经配置了 SLF4J 和 Log4j2，MyBatis 会自动识别并使用 Log4j2 -->
-    <settings>
-        <setting name="logImpl" value="LOG4J2"/> <!-- 配置使用 Log4j2 -->
-    </settings>
+
 <!--    &lt;!&ndash; 配置 Mapper 文件的位置 &ndash;&gt;-->
 <!--    <mappers>-->
 <!--        <mapper resource="com/cuzz/bukkitmybatis/mapper/TestMapper.xml"/>-->
