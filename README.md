@@ -40,7 +40,7 @@ mybatis允许单个应用(进程)持有多个数据源,但是个人认为在 Min
             <dataSource type="com.cuzz.bukkitmybatis.datasource.HikariDataSourceFactory">
                 <property name="jdbcUrl" value="jdbc:mysql://8.138.106.163:3306/electric_dispatch"/>
                 <property name="username" value="root"/>
-                <property name="password" value="loveyou"/>
+                <property name="password" value="root"/>
                 <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
                 <property name="maximumPoolSize" value="10"/>
                 <property name="minimumIdle" value="5"/>
