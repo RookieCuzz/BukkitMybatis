@@ -87,10 +87,11 @@ SqlSession sqlSession =sqlSessionFactory.openSession();
 TestMapper2 mapper = sqlSession.getMapper(TestMapper2.class);
 mapper.getGroupByName("testtest");
 sqlSession.commit();
-
+sqlSession.close();
 //不带有事务控制的
 SqlSession sqlSession2 =sqlSessionFactory.openSession(true);
 TestMapper2 mapper2 = sqlSession2.getMapper(TestMapper2.class);
 mapper2.getGroupByName("testtest");;
+sqlSession.close();
 ```
 
