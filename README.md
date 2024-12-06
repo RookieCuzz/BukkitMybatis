@@ -53,7 +53,7 @@ mybatis允许单个应用(进程)持有多个数据源,但是个人认为在 Min
 </configuration>
  ```
 ## 日志输出
-若配置日志实现为LOG4J2类型,则mybatis将异步输出到根目录/mybatis/mybatis.log
+若配置日志实现为LOG4J2类型,则日志将异步输出到根目录/mybatis/mybatis.log
 
 ## 自动注册映射文件
 
