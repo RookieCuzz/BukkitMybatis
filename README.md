@@ -8,6 +8,27 @@ mybatis允许单个应用(进程)持有多个数据源,但是个人认为在 Min
 还能减少资源开销，保持服务器的高效性,所以自己开发的插件所有的表应该尽可能建在同一个库中.
 并且在数据源为连接池的时候,创建多个数据源意味着要维护多组不同的连接池,这可能会导致过度的资源占用。
 
+```xml
+<dependencies>
+    <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis</artifactId>
+        <version>3.5.6</version>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>8.0.23</version>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>com.zaxxer</groupId>
+        <artifactId>HikariCP</artifactId>
+        <version>4.0.3</version>
+        <scope>provided</scope>
+    </dependency>
+</dependencies>
 
 
 ### 使用mybatis内置连接池
