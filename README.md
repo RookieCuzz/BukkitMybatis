@@ -36,7 +36,9 @@ mybatis允许单个应用(进程)持有多个数据源,但是个人认为在 Min
             <systemPath>${project.basedir}/libs/BukkitMybatis-1.0-SNAPSHOT.jar</systemPath>
         </dependency>
 </dependencies>
+
 ### 使用MBG生成mapper
+
 ```xml
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
