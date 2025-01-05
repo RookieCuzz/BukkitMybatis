@@ -48,13 +48,6 @@ mybatis允许单个应用(进程)持有多个数据源,但是个人认为在 Min
             <overwrite>true</overwrite>
             <verbose>true</verbose>
         </configuration>
-        <dependencies>
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>5.1.47</version>
-            </dependency>
-        </dependencies>
     </plugin>
 
 ```
