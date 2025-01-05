@@ -36,27 +36,25 @@ mybatis允许单个应用(进程)持有多个数据源,但是个人认为在 Min
             <systemPath>${project.basedir}/libs/BukkitMybatis-1.0-SNAPSHOT.jar</systemPath>
         </dependency>
 </dependencies>
-
 ### 使用MBG生成mapper
-
 ```xml
-            <plugin>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.3.2</version>
-                <configuration>
-                    <configurationFile>${basedir}/src/main/resources/mybatis-generator.xml</configurationFile>
-                    <overwrite>true</overwrite>
-                    <verbose>true</verbose>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>5.1.47</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
+    <plugin>
+        <groupId>org.mybatis.generator</groupId>
+        <artifactId>mybatis-generator-maven-plugin</artifactId>
+        <version>1.3.2</version>
+        <configuration>
+            <configurationFile>${basedir}/src/main/resources/mybatis-generator.xml</configurationFile>
+            <overwrite>true</overwrite>
+            <verbose>true</verbose>
+        </configuration>
+        <dependencies>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>5.1.47</version>
+            </dependency>
+        </dependencies>
+    </plugin>
 ```
 
 ### 使用mybatis内置连接池
