@@ -37,6 +37,7 @@ mybatis允许单个应用(进程)持有多个数据源,但是个人认为在 Min
         </dependency>
 </dependencies>
 ### 使用MBG生成mapper
+
 ```xml
     <plugin>
         <groupId>org.mybatis.generator</groupId>
@@ -55,6 +56,7 @@ mybatis允许单个应用(进程)持有多个数据源,但是个人认为在 Min
             </dependency>
         </dependencies>
     </plugin>
+
 ```
 
 ### 使用mybatis内置连接池
