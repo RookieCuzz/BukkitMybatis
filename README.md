@@ -65,7 +65,7 @@ Loki (optional):
 
 Loki example (your domain):
 ```bash
-export BUKKIT_MYBATIS_LOKI_URL="https://www.4399mc.cn"
+export BUKKIT_MYBATIS_LOKI_URL="xxxxx"
 export BUKKIT_MYBATIS_LOKI_TENANT=""
 export BUKKIT_MYBATIS_LOKI_USERNAME=""
 export BUKKIT_MYBATIS_LOKI_PASSWORD=""

@@ -3,10 +3,10 @@
 <configuration>
 <properties>
     <property name="mybatis.logImpl" value="com.cuzz.bukkitmybatis.logging.BukkitMybatisLog"/>
-    <property name="log.level" value="INFO"/>
+    <property name="log.level" value="DEBUG"/>
     <property name="log.dir" value=""/>
-    <property name="slow.sql.threshold.ms" value="200"/>
-    <property name="slow.sql.level" value="INFO"/>
+    <property name="slow.sql.threshold.ms" value="1"/>
+    <property name="slow.sql.level" value="DEBUG"/>
     <property name="slow.sql.max.sql.length" value="2000"/>
     <property name="slow.sql.log.params" value="false"/>
     <property name="loki.url" value=""/>
