@@ -12,7 +12,7 @@
     <name>BukkitMybatis</name>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>21</java.version>
         <maven.version>1.7.3</maven.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -24,8 +24,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>16</source>
-                    <target>16</target>
+                    <source>21</source>
+                    <target>21</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -72,17 +72,20 @@
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
     </repositories>
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <url>https://www.4399mc.cn/nexus/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <url>https://www.4399mc.cn/nexus/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <dependencies>
 
 
-        <!-- Log4j2 核心依赖 -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.19.0</version> <!-- 请根据需要选择适当版本 -->
-            <scope>provided</scope>
-        </dependency>
 
 
 

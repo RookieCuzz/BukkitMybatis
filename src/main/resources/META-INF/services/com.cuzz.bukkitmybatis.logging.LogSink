@@ -1,0 +1,2 @@
+com.cuzz.bukkitmybatis.logging.FileLogSink
+com.cuzz.bukkitmybatis.logging.LokiLogSink

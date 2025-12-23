@@ -1,11 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD MyBatis Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+<properties>
+    <property name="mybatis.logImpl" value="com.cuzz.bukkitmybatis.logging.BukkitMybatisLog"/>
+    <property name="log.level" value="INFO"/>
+    <property name="log.dir" value=""/>
+    <property name="slow.sql.threshold.ms" value="200"/>
+    <property name="slow.sql.level" value="INFO"/>
+    <property name="slow.sql.max.sql.length" value="2000"/>
+    <property name="slow.sql.log.params" value="false"/>
+    <property name="loki.url" value=""/>
+    <property name="loki.tenant" value=""/>
+    <property name="loki.username" value=""/>
+    <property name="loki.password" value=""/>
+    <property name="loki.labels" value=""/>
+    <property name="loki.debug" value=""/>
+    <!-- Env override examples:
+         BUKKIT_MYBATIS_JDBC_URL / BUKKIT_MYBATIS_USERNAME / BUKKIT_MYBATIS_PASSWORD
+         BUKKIT_MYBATIS_LOG_IMPL / BUKKIT_MYBATIS_LOG_LEVEL / BUKKIT_MYBATIS_LOG_DIR
+         BUKKIT_MYBATIS_LOKI_URL / BUKKIT_MYBATIS_LOKI_TENANT / BUKKIT_MYBATIS_LOKI_USERNAME
+         BUKKIT_MYBATIS_LOKI_PASSWORD / BUKKIT_MYBATIS_LOKI_LABELS / BUKKIT_MYBATIS_LOKI_DEBUG
+    -->
+</properties>
+
     <!-- 配置日志工厂类型 -->
     <!-- 如果你已经配置了 SLF4J 和 Log4j2，MyBatis 会自动识别并使用 Log4j2 -->
     <settings>
-        <setting name="logImpl" value="STDOUT_LOGGING"/>  <!-- [LOG4J2,STDOUT_LOGGING] -->
+        <setting name="logImpl" value="${mybatis.logImpl}"/>  <!-- [LOG4J2,STDOUT_LOGGING] -->
     </settings>
+    <plugins>
+        <plugin interceptor="com.cuzz.bukkitmybatis.mybatis.SlowSqlInterceptor">
+            <property name="thresholdMs" value="${slow.sql.threshold.ms}"/>
+            <property name="level" value="${slow.sql.level}"/>
+            <property name="maxSqlLength" value="${slow.sql.max.sql.length}"/>
+            <property name="logParams" value="${slow.sql.log.params}"/>
+        </plugin>
+    </plugins>
     <!-- 配置 MyBatis 的别名 -->
 
     <!-- 配置数据库连接池 -->
@@ -13,9 +43,9 @@
         <environment id="development">
             <transactionManager type="JDBC"/>
             <dataSource type="com.cuzz.bukkitmybatis.datasource.HikariDataSourceFactory">
-                <property name="jdbcUrl" value="jdbc:mysql://8.138.106.163:3306/electric_dispatch"/>
-                <property name="username" value="root"/>
-                <property name="password" value="loveyou"/>
+                <property name="jdbcUrl" value="${db.url}"/>
+                <property name="username" value="${db.username}"/>
+                <property name="password" value="${db.password}"/>
                 <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
                 <property name="maximumPoolSize" value="10"/>
                 <property name="minimumIdle" value="5"/>

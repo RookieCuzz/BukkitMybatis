@@ -59,6 +59,23 @@ public class MapperRegister {
         }
     }
 
+    public static void registerMapper(String resourceId, InputStream mapperXmlStream) {
+        Configuration configuration = BukkitMybatis.instance.getSqlSessionFactory().getConfiguration();
+        try (InputStream input = mapperXmlStream) {
+            XMLMapperBuilder xmlMapperBuilder = new XMLMapperBuilder(
+                    input,
+                    configuration,
+                    resourceId,
+                    configuration.getSqlFragments()
+            );
+            xmlMapperBuilder.parse();
+
+            BukkitMybatis.instance.getLogger().log(Level.INFO, "Registered mapper: " + resourceId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      *  卸载某个插件注册的mapper
      * @param plugin

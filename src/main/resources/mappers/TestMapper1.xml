@@ -1,24 +1,56 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cuzz.bukkitmybatis.mapper.TestMapper2">
+    <sql id="GroupColumns">
+        id, name, leader, leader_id, sort, created_at, updated_at
+    </sql>
 
-
-
-    <!-- 定义 ResultMap 映射 -->
     <resultMap id="GroupResultMap" type="com.cuzz.bukkitmybatis.model.Group">
-        <id property="id" column="id"/>  <!-- 映射主键 -->
+        <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="leader" column="leader"/>
         <result property="leaderId" column="leader_id"/>
         <result property="sort" column="sort"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
     </resultMap>
 
-    <!-- 使用 ResultMap 映射查询结果 -->
     <select id="getGroupByName" resultMap="GroupResultMap">
-        SELECT id, name, leader, leader_id, sort
+        SELECT <include refid="GroupColumns"/>
         FROM ed_group
         WHERE name = #{name}
     </select>
 
-<!--    测试语句-->
+    <select id="getGroupById" resultMap="GroupResultMap">
+        SELECT <include refid="GroupColumns"/>
+        FROM ed_group
+        WHERE id = #{id}
+    </select>
+
+    <select id="listGroups" resultMap="GroupResultMap">
+        SELECT <include refid="GroupColumns"/>
+        FROM ed_group
+        ORDER BY sort ASC, id ASC
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <insert id="insertGroup" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO ed_group (name, leader, leader_id, sort, created_at, updated_at)
+        VALUES (#{name}, #{leader}, #{leaderId}, #{sort}, NOW(), NOW())
+    </insert>
+
+    <update id="updateGroup">
+        UPDATE ed_group
+        SET name = #{name},
+            leader = #{leader},
+            leader_id = #{leaderId},
+            sort = #{sort},
+            updated_at = NOW()
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteGroup">
+        DELETE FROM ed_group
+        WHERE id = #{id}
+    </delete>
 </mapper>
